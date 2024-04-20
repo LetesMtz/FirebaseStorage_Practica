@@ -2,4 +2,26 @@
     ViewData["Title"] = "Ver Imagen";
 }
 
-<h1>@ViewData["imagen"]</h1>
+<div class="w-100 text-center">
+    <h2>Imagen cargada con éxito a Firebase Storage:</h2>
+    <img src="@ViewData["imagen"]" class="w-25 mt-3" alt="Alternate Text" />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre del Archivo</th>
+                <th width="50%" scope="col">Link completo</th>
+                <th scope="col">Link directo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>@ViewData["nombre"]</th>
+                <td>@ViewData["imagen"]</td>
+                <td><a href="@ViewData["imagen"]" target="_blank">Ver imagen</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Index">Subir otra imagen</a>

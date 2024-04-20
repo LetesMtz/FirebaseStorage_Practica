@@ -54,11 +54,18 @@ namespace FirebaseStorage_Practica.Controllers
                 {
                     AuthTokenAsyncFactory = () => Task.FromResult(tokenUser),
                     ThrowOnCancel = true
-                }).Child("Archivos").Child(archivo.FileName).PutAsync(archivoASubir);
+                }).Child("Archivos").Child(archivo.FileName).PutAsync(archivoASubir, cancellation.Token);
 
             var urlArchivoCargado = await tareaCargarArchivo;
 
-            return RedirectToAction("VerImagen");
+            return RedirectToAction("VerImagen", new {imagen = urlArchivoCargado, nombre = archivo.FileName});
+        }
+
+        public IActionResult VerImagen(string imagen, string nombre)
+        {
+            ViewData["imagen"] = imagen;
+            ViewData["nombre"] = nombre;
+            return View();
         }
     }
 }
